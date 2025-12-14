@@ -1,0 +1,23 @@
+<?php
+if(php_sapi_name() == 'cli'){
+    $str = $argv;
+    if($str[1] == 'view:clear'){
+        $path = 'storage/views';
+        $files = glob($path.'/*');
+        foreach($files as $file){
+            if(file_exists($file)){
+                unlink($file);
+            }
+        }
+        echo "Views cleared\n" .PHP_EOL;
+    }elseif($str[1] == 'sessions:clear'){
+        $path = 'storage/sessions';
+        $files = glob($path.'/*');
+        foreach($files as $file){
+            if(file_exists($file)){
+                unlink($file);
+            }
+        }
+        echo "sessions cleared\n" .PHP_EOL;
+    }
+}

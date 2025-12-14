@@ -1,0 +1,21 @@
+ <?php
+ return [
+    'home' => 'Home',
+    'add_user' => 'add user',
+    'language' => 'Language',
+    'arbic' => 'عربي',
+    'english' => 'English',
+    'login' => 'Login',
+    'register' => 'Register',
+    'users' => 'Users',
+    'name' => 'Name',
+    'email' => 'Email address',
+    'sitename' => 'News',
+    'readmore' => 'Read more',
+    'comments' => 'Comments',
+    'write_comment'=> 'Write comment',
+    'add'=>'Add',
+    'comment'=>'Comment',
+    'archives'=>'Archives',
+   'latest_news'=>'Latest News',
+ ];
