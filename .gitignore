@@ -1,13 +1,15 @@
-# Storage
-/storage/cache/*
-/storage/logs/*
-/storage/sessions/*
-/storage/views/*
-!/storage/.gitkeep
+# Storage (ignore runtime files)
+storage/sessions/*
+storage/views/*
+storage/files/*
 
-# Uploads
-/public/storage/*
-/storage/uploads/*
+# Keep folders structure
+!storage/sessions/.gitkeep
+!storage/views/.gitkeep
+!storage/files/.gitkeep
+
+# Public uploads (if any)
+public/storage/*
 
 # Mac OS
 .DS_Store
@@ -24,8 +26,8 @@
 *.db
 
 # Config
-/includes/config.php
-/config/database.php
+includes/config.php
+config/database.php
 
 # IDE
 .vscode/
