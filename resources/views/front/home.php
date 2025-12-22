@@ -39,7 +39,6 @@
        LIMIT 3'
     );
 
-    // أول خبر
     $first_news = mysqli_fetch_assoc($news['query']);
     if (!$first_news) continue;
 
@@ -48,18 +47,14 @@
       : url('assets/images/icon.png');
     ?>
 
-    <!-- كاتيجوري -->
     <div class="mb-5">
 
-      <!-- عنوان الكاتيجوري -->
       <h3 class="border-bottom pb-2 fw-bold">
         {{ $cat['name'] }}
       </h3>
 
-      <!-- الخبر الرئيسي -->
       <div class="row g-3 mb-3 align-items-center">
 
-        <!-- الصورة -->
         <div class="col-md-4">
           <img src="{{ $img }}"
                class="img-fluid rounded"
@@ -67,7 +62,6 @@
                alt="{{ $first_news['title'] }}">
         </div>
 
-        <!-- المحتوى -->
         <div class="col-md-8">
           <h5 class="mb-2 fw-semibold">
             <a class="text-decoration-none"

@@ -121,8 +121,7 @@
                     href="{{  url('/') }}">{{ trans('main.title') }}</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                
-                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+                <a class="btn btn-sm btn-outline-secondary" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"> Sign In </a>
             </div>
         </div>
     </header>
