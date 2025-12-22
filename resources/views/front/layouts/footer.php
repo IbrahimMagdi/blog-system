@@ -11,19 +11,24 @@
     src="{{url('assets/front')}}/dist/js/bootstrap.bundle.min.js"
     class="astro-vvvwv3sm"></script>
 {{ view('front.auth.sign_in') }}
+{{ view('front.auth.sign_up') }}
+
 <?php if (session_has('error_login')): ?>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    var loginModal = new bootstrap.Modal(
-        document.getElementById('loginModal')
-    );
-    loginModal.show();
+    new bootstrap.Modal(document.getElementById('loginModal')).show();
 });
 </script>
-<?php 
-    session_flash('error_login');
-?>
-<?php endif; ?>
+<?php session_flash('error_login'); endif; ?>
+
+<?php if (session_has('error_signup')): ?>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    new bootstrap.Modal(document.getElementById('signUpModal')).show();
+});
+</script>
+<?php session_flash('error_signup'); endif; ?>
+
 
 </body>
 

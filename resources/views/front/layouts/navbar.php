@@ -121,7 +121,16 @@
                     href="{{  url('/') }}">{{ trans('main.title') }}</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"> Sign In </a>
+                <?php if (session_has('success_sign_in')):
+                    $user = json_decode(session('success_sign_in'), true);
+                ?>
+                    <span class="me-3 text-white fw-bold"><?= $user['name'] ?></span>
+                    <a href="{{ url('sign-out') }}" class="btn btn-sm btn-outline-danger">{{ trans('main.sign_out') }}</a>
+                <?php else: ?>
+                    <a class="btn btn-sm btn-outline-secondary" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        {{ trans('main.sign_in') }}
+                    </a>
+                <?php endif; ?>
             </div>
         </div>
     </header>
