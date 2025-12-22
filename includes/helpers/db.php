@@ -96,9 +96,9 @@ if (!function_exists('db_first')) {
 * @param int $id
 */
 if (!function_exists('db_get')) {
-    function db_get(string $table, string $query_str): mixed
+    function db_get(string $table, string $query_str, string $select = '*'): mixed
     {
-        $sql = "select * from " . $table . " " . $query_str;
+        $sql = "select " . $select . " from " . $table . " " . $query_str;
         $query = mysqli_query($GLOBALS['connect'], $sql);
         $num = mysqli_num_rows($query);
         $GLOBALS['query'] = $query;

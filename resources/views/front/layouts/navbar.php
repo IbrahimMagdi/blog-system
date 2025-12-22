@@ -118,37 +118,20 @@
             <div class="col-4 text-center">
                 <a
                     class="blog-header-logo text-body-emphasis text-decoration-none"
-                    href="#">Large</a>
+                    href="{{  url('/') }}">{{ trans('main.title') }}</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="link-secondary" href="#" aria-label="Search">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        class="mx-3"
-                        role="img"
-                        viewBox="0 0 24 24">
-                        <title>Search</title>
-                        <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                        <path d="M21 21l-5.2-5.2"></path>
-                    </svg>
-                </a>
+                
                 <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
             </div>
         </div>
     </header>
     <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-between">
-            <a class="nav-item nav-link link-body-emphasis {{ empty(request('catefory_id'))?'active':'' }}" href="{{ url('/') }}">{{ trans('main.home') }}</a>
+            <a class="nav-item nav-link link-body-emphasis {{ empty(request('category_id'))?'active':'' }}" href="{{ url('/') }}">{{ trans('main.home') }}</a>
             <?php $nav_categories = db_get('categories', ' order by id desc limit 10') ?>
             <?php while ($rows = mysqli_fetch_assoc($nav_categories['query'])): ?>
-                <a class="nav-item nav-link link-body-emphasis {{ !empty(request('catefory_id')) && request('catefory_id') == $rows['id']?'active':'' }}" href="{{ url('category?catefory_id='.$rows['id']) }}">{{ $rows['name']}}</a>
+                <a class="nav-item nav-link link-body-emphasis {{ !empty(request('category_id')) && request('category_id') == $rows['id']?'active':'' }}" href="{{ url('category?category_id='.$rows['id']) }}">{{ $rows['name']}}</a>
             <?php endwhile; ?>
         </nav>
     </div>

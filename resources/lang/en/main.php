@@ -1,5 +1,6 @@
  <?php
- return [
+  return [
+    'title' => 'Rasad',
     'home' => 'Home',
     'add_user' => 'add user',
     'language' => 'Language',
@@ -13,9 +14,12 @@
     'sitename' => 'News',
     'readmore' => 'Read more',
     'comments' => 'Comments',
-    'write_comment'=> 'Write comment',
-    'add'=>'Add',
-    'comment'=>'Comment',
-    'archives'=>'Archives',
-   'latest_news'=>'Latest News',
- ];
+    'write_comment' => 'Write comment',
+    'add' => 'Add',
+    'comment' => 'Comment',
+    'archives' => 'Archives',
+    'latest_news' => 'Latest News',
+    'about' => 'About',
+    'about_description' => 'This website offers the latest news and articles categorized into various sections to make it easier to access the content that interests you. You can follow the news, read the details, and easily share your opinion through comments, creating an interactive space for discussion and staying informed about current events.',
+    'elsewhere' => 'Elsewhere',
+  ];

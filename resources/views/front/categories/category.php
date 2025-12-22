@@ -1,5 +1,5 @@
 <?php
-$category = db_find('categories', request('catefory_id'));
+$category = db_find('categories', request('category_id'));
 redirect_if(empty($category), url('/'));
 $news = db_paginate('news', 'where category_id ="' . $category['id'] . '"');
 ?>
@@ -16,7 +16,7 @@ $news = db_paginate('news', 'where category_id ="' . $category['id'] . '"');
       <div
         class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+          <!-- <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong> -->
           <h3 class="mb-0">{{ $row['title'] }}</h3>
           <div class="mb-1 text-body-secondary">{{ date('Y-m-d', strtotime($row['created_at'])) }}</div>
           <p class="card-text mb-auto">{{$row['description']}}</p>
@@ -40,18 +40,6 @@ $news = db_paginate('news', 'where category_id ="' . $category['id'] . '"');
           }
           ?> 
           <img src="{{ $img }}" class="bd-placeholder-img" style="width:200px ;height:250px;">
-          <!-- <svg
-            aria-label="Placeholder: Thumbnail"
-            class="bd-placeholder-img"
-            height="250"
-            preserveAspectRatio="xMidYMid slice"
-            role="img"
-            width="200"
-            xmlns="http://www.w3.org/2000/svg">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg> -->
         </div>
       </div>
     </div>
