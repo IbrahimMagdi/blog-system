@@ -1,6 +1,12 @@
 <?php
-$comments = db_paginate('comments', 'where status="show" and news_id ="' . request('id') . '"', 15, 'asc', '*', ['id'=>request('id')]);
+$comments = db_paginate('comments', 'where status="show" and news_id ="' . request('id') . '"', 15, 'asc', '*', ['id' => request('id')]);
 
+$user = null;
+$is_logged_in = false;
+if (session_has('success_auth')) {
+    $user = json_decode(session('success_auth'), true);
+    $is_logged_in = true;
+}
 ?>
 <div class="container mt-5 mb-5">
 
@@ -21,30 +27,37 @@ $comments = db_paginate('comments', 'where status="show" and news_id ="' . reque
                     <div class="mt-3 row align-items-start p-3 form-color">
 
                         <div class="col-auto">
-                            <img src="https://ui-avatars.com/api/?name=Ahmed+Ali&size=60&background=random"
-                                class="rounded-circle"
-                                style="border: 2px solid #eee; box-shadow: 0 0 4px rgba(0,0,0,0.1);">
+                            <?php if ($is_logged_in): ?>
+                                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($user['name']); ?>&size=60&background=random"
+                                    class="rounded-circle"
+                                    style="border: 2px solid #eee; box-shadow: 0 0 4px rgba(0,0,0,0.1);">
+                            <?php else: ?>
+                                <img src="https://ui-avatars.com/api/?name=Guest&size=60&background=cccccc"
+                                    class="rounded-circle"
+                                    style="border: 2px solid #eee; box-shadow: 0 0 4px rgba(0,0,0,0.1);">
+                            <?php endif; ?>
                         </div>
 
                         <div class="col">
-
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <input type="text" class="form-control" name="name" placeholder="{{ trans('main.name') }}">
-                                </div>
-                                <div class="col">
-                                    <input type="text" class="form-control" name="email" placeholder="{{ trans('main.email') }}">
-                                </div>
-                            </div>
-
-                            <textarea class="form-control mb-2" rows="2" name="comment" placeholder="{{ trans('main.write_comment') }}"></textarea>
+                            <textarea class="form-control mb-2" rows="2" name="comment" placeholder="{{ trans('main.write_comment') }}" <?php echo !$is_logged_in ? 'readonly' : ''; ?>></textarea>
                         </div>
-                        <button class="btn btn-success add_comment" type="button">{{ trans('main.add') }}</button>
+                        <button class="btn btn-success add_comment" type="button" data-logged-in="<?php echo $is_logged_in ? 'true' : 'false'; ?>">{{ trans('main.add') }}</button>
                         <input type="hidden" name="_method" value="post">
+                        <?php if ($is_logged_in): ?>
+                            <input type="hidden" name="name" value="{{$user['name']}}">
+                            <input type="hidden" name="email" value="{{$user['email']}}">
+                        <?php endif; ?>
                     </div>
                 </form>
                 <script>
                     $(document).on('click', '.add_comment', function() {
+                        var isLoggedIn = $(this).data('logged-in');
+                        
+                        if (isLoggedIn !== true && isLoggedIn !== 'true') {
+                            $('#loginModal').modal('show');
+                            return false;
+                        }
+
                         var form_data = $('#comment-form').serialize();
                         $.ajax({
                             url: $('#comment-form').attr('action'),
@@ -77,6 +90,10 @@ $comments = db_paginate('comments', 'where status="show" and news_id ="' . reque
                             }
                         })
                         return false;
+                    });
+                    
+                    $(document).on('click', 'textarea[readonly]', function() {
+                        $('#loginModal').modal('show');
                     });
                 </script>
                 <div class="mt-2">

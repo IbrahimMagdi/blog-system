@@ -7,29 +7,35 @@
     </p>
     <p class="mb-0"><a href="#">Back to top</a></p>
 </footer>
-<script
-    src="{{url('assets/front')}}/dist/js/bootstrap.bundle.min.js"
-    class="astro-vvvwv3sm"></script>
+<script src="{{url('assets/front')}}/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
 {{ view('front.auth.sign_in') }}
 {{ view('front.auth.sign_up') }}
 
-<?php if (session_has('error_login')): ?>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    new bootstrap.Modal(document.getElementById('loginModal')).show();
-});
+    document.addEventListener("DOMContentLoaded", function() {
+
+        <?php if (session_has('error_sign_in')): ?>
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+            <?php
+            session_forget('error_sign_in');
+            ?>
+        <?php endif; ?>
+
+        <?php if (session_has('errors')): ?>
+            var signUpModal = new bootstrap.Modal(document.getElementById('signUpModal'));
+            signUpModal.show();
+            <?php
+            session_forget('errors');
+            session_forget('old');
+            ?>
+        <?php endif; ?>
+
+    });
 </script>
-<?php session_flash('error_login'); endif; ?>
-
-<?php if (session_has('error_signup')): ?>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    new bootstrap.Modal(document.getElementById('signUpModal')).show();
-});
-</script>
-<?php session_flash('error_signup'); endif; ?>
-
-
 </body>
 
 </html>
+@php
+end_errors();
+@endphp

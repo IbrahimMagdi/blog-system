@@ -1,3 +1,3 @@
 <?php
-session_forget('success_sign_in');
-redirect('/');
+session_forget('success_auth');
+back();

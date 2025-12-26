@@ -121,8 +121,8 @@
                     href="{{  url('/') }}">{{ trans('main.title') }}</a>
             </div>
             <div class="col-4 d-flex justify-content-end align-items-center">
-                <?php if (session_has('success_sign_in')):
-                    $user = json_decode(session('success_sign_in'), true);
+                <?php if (session_has('success_auth')):
+                    $user = json_decode(session('success_auth'), true);
                 ?>
                     <span class="me-3 text-white fw-bold"><?= $user['name'] ?></span>
                     <a href="{{ url('sign-out') }}" class="btn btn-sm btn-outline-danger">{{ trans('main.sign_out') }}</a>
