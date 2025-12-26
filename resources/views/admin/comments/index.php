@@ -35,7 +35,11 @@ $comments_list = db_paginate(
                     <td><a href="{{ aurl('news/show?id='.$comment['news_id'])}}">{{$comment['news_name']}}</a></td>
                     <td>{{$comment['name']}}</td>
                     <td>{{$comment['email']}}</td>
-                    <td>{{$comment['comment']}}</td>
+                    <td>
+                        <span title="{{$comment['comment']}}" style="cursor: help;">
+                            {{ mb_strlen($comment['comment']) > 50 ? mb_substr($comment['comment'], 0, 50) . '...' : $comment['comment'] }}
+                        </span>
+                    </td>
                     <td>{{trans('comment.'.$comment['status'])}}</td>
                     <td>
                         <a href="{{ aurl('comments/show?id='.$comment['id']) }}"><i class="fa-regular fa-eye"></i></a>

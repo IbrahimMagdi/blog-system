@@ -1,7 +1,16 @@
 <?php
 view('admin.layouts.header', ['title' => trans('admin.users').'-'.trans('admin.show')]);
-$user = db_find('users', request('id'));
+$id = validate_id();
+if (!$id) {
+    redirect(aurl('users'));
+    exit();
+}
+$user = db_find('users', $id);
 redirect_if(empty($user), aurl('users'));
+if (!$user) {
+    redirect(aurl('users'));
+    exit();
+}
 ?>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h2>{{ trans('admin.users') }} - {{ trans('admin.show')}} #{{$user['name']}}</h2>
@@ -31,7 +40,7 @@ redirect_if(empty($user), aurl('users'));
         <div class="col-md-6">
             <div class="form-group">
                 <label for="user_type">{{ trans('user.user_type') }}</label>
-                {{ trans('user'. $user['user_type']) }}
+                {{ trans('user.'. $user['user_type']) }}
             </div>
         </div>
         

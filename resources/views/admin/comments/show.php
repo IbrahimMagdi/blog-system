@@ -1,9 +1,14 @@
 <?php
 view('admin.layouts.header', ['title' => trans('admin.comments') . '-' . trans('admin.show')]);
+$id = validate_id();
+if (!$id) {
+    redirect(aurl('comments'));
+    exit();
+}
 $comment = db_first(
 'comments',
 "JOIN news on comments.news_id = news.id
-where comments.id=" . request('id'),
+where comments.id=" . $id,
 "comments.id,
  comments.name,
  comments.news_id,
@@ -13,7 +18,10 @@ where comments.id=" . request('id'),
  news.title AS news_name"
 );
 
-redirect_if(empty($comment), aurl('comments'));
+if (!$comment) {
+    redirect(aurl('comments'));
+    exit();
+}
 ?>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2>{{ trans('admin.comments') }} - {{ trans('admin.show')}} #{{$comment['name']}}</h2>

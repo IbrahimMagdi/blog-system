@@ -1,4 +1,8 @@
 <?php
+if (!request('id') || !is_numeric(request('id'))) {
+    redirect(url('/'));
+    exit();
+}
 $news = db_first('news',
 "JOIN categories on news.category_id = categories.id
 JOIN users on news.user_id = users.id 

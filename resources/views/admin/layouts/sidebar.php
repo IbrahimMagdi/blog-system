@@ -9,7 +9,7 @@
         aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="sidebarMenuLabel">
-            Company name
+            {{ trans('main.title') }}
           </h5>
           <button
             type="button"
@@ -26,7 +26,7 @@
                 class="nav-link d-flex align-items-center gap-2 active"
                 aria-current="page"
                 href="{{ url(ADMIN) }}">
-
+                <i class="fa-solid fa-chart-line"></i>
                 {{ trans('admin.dashboard') }}
               </a>
             </li>
@@ -58,14 +58,6 @@
 
           <hr class="my-3" />
           <ul class="nav flex-column mb-auto">
-            <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="#">
-                <svg class="bi" aria-hidden="true">
-                  <use xlink:href="#gear-wide-connected"></use>
-                </svg>
-                Settings
-              </a>
-            </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{ url('admin/logout') }}">
                 <i class="fa-solid fa-right-from-bracket"></i>

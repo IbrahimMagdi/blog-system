@@ -154,3 +154,18 @@ if(!function_exists('old')){
         
     }
 }
+
+
+if(!function_exists('validate_id')){
+   function validate_id($id = null) {
+    if ($id === null && isset($_GET['id'])) {
+        $id = $_GET['id'];
+    }
+    
+    if (empty($id) || !is_numeric($id) || $id <= 0) {
+        return false;
+    }
+    
+    return (int)$id;
+}
+}
